@@ -53,7 +53,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 50;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -78,22 +78,6 @@
       text-transform: uppercase;
     }
 
-    .mobile-menu-button {
-      display: none;
-    }
-
-    .menu-icon {
-      display: block;
-    }
-
-    .menu-icon::before {
-      content: '☰';
-    }
-
-    body.menu-open .menu-icon::before {
-      content: '×';
-    }
-
     .nav-links a {
       opacity: 0.82;
       transition: opacity 0.2s ease;
@@ -108,6 +92,28 @@
     .nav-links .active {
       border-bottom: 1px solid var(--text);
       padding-bottom: 7px;
+    }
+
+    .mobile-menu-button {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .menu-icon::before {
+      content: '☰';
+    }
+
+    body.menu-open .menu-icon::before {
+      content: '×';
     }
 
     .hero {
@@ -322,25 +328,22 @@
     }
 
     @media (max-width: 650px) {
+
       .nav {
-        padding: 18px 6vw;
-        height: 72px;
+        padding: 24px 6vw;
+        height: 88px;
         justify-content: center;
       }
 
       .logo {
-        position: static;
-        transform: none;
-        font-size: 1.75rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.9rem;
       }
 
       .mobile-menu-button {
         display: block;
-        background: transparent;
-        border: 0;
-        color: var(--text);
-        font-size: 1.8rem;
-        cursor: pointer;
         position: absolute;
         left: 6vw;
         top: 50%;
@@ -355,25 +358,29 @@
         bottom: 0;
         top: auto;
         width: 100%;
-        max-width: none;
         height: 36vh;
+
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
-        gap: 20px;
-        padding: 30px 24px 34px;
+        gap: 22px;
+        padding: 34px 24px;
 
         background: rgba(0, 0, 0, 0.94);
         backdrop-filter: blur(18px);
+
         border-top: 1px solid rgba(255,255,255,0.12);
-        border-right: none;
 
         opacity: 0;
         visibility: hidden;
         transform: translateY(100%);
-        transition: transform 0.35s ease, opacity 0.25s ease;
+
+        transition:
+          transform 0.35s ease,
+          opacity 0.25s ease;
+
         z-index: 150;
       }
 
@@ -390,11 +397,11 @@
 
       .hero {
         min-height: 62vh;
-        padding: 118px 6vw 58px;
+        padding: 128px 6vw 58px;
       }
 
       .hero h1 {
-        font-size: clamp(3.1rem, 18vw, 4.8rem);
+        font-size: clamp(3rem, 18vw, 5rem);
       }
 
       .hero p {
@@ -428,21 +435,24 @@
 
       .footer {
         flex-direction: column;
-        text-align: center;
-        padding: 34px 6vw;
-        gap: 14px;
+        align-items: flex-start;
+        text-align: left;
+        padding: 54px 6vw 42px;
+        gap: 24px;
       }
 
       .footer-brand {
-        font-size: 1.45rem;
+        font-size: 2rem;
       }
 
       .footer-links {
-        flex-direction: column;
-        gap: 12px;
-        font-size: 0.66rem;
-        letter-spacing: 0.24em;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 28px;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
       }
+
     }
   </style>
 </head>
@@ -452,4 +462,82 @@
   <header class="nav">
 
     <button class="mobile-menu-button" aria-label="Open menu" onclick="toggleMenu()">
-      <span class
+      <span class="menu-icon"></span>
+    </button>
+
+    <a href="https://www.byjdg.com" class="logo">ByJDG</a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="https://www.byjdg.com">Home</a>
+      <a href="https://www.youtube.com/@by-jdg" target="_blank">YouTube</a>
+      <a href="https://www.byjdg.com/#about">About</a>
+      <a href="https://www.byjdg.com/projects.html">Projects</a>
+      <a href="./" class="active">Shop</a>
+    </nav>
+
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Creator Goods</div>
+        <h1>Shop</h1>
+        <div class="hero-line"></div>
+        <p>Elsewhere is more than a place. It is the feeling that keeps us creating.</p>
+      </div>
+    </section>
+
+    <section class="shop-section">
+
+      <div class="section-header">
+        <h2 class="section-title">Shop All</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="filters">
+        <button class="filter-button active">All</button>
+        <button class="filter-button">Apparel</button>
+        <button class="filter-button">Accessories</button>
+      </div>
+
+      <div class="product-grid">
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+
+    <div class="footer-brand">ByJDG</div>
+
+    <div>© 2026 ByJDG. All rights reserved.</div>
+
+    <div class="footer-links">
+      <a href="https://www.youtube.com/@by-jdg" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+      <a href="mailto:hello@byjdg.com">Email</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.body.classList.toggle('menu-open');
+
+      const menuButton = document.querySelector('.mobile-menu-button');
+      const isOpen = document.body.classList.contains('menu-open');
+
+      menuButton.setAttribute(
+        'aria-label',
+        isOpen ? 'Close menu' : 'Open menu'
+      );
+    }
+  </script>
+
+</body>
+
+</html>
