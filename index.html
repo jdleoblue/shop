@@ -53,14 +53,14 @@
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 100;
+      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 28px 7vw;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0,0,0,0.45);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .logo {
@@ -76,6 +76,26 @@
       font-size: 0.72rem;
       letter-spacing: 0.34em;
       text-transform: uppercase;
+    }
+
+    .mobile-menu-button {
+      display: none;
+    }
+
+    .menu-icon {
+      display: block;
+    }
+
+    .menu-icon::before {
+      content: '☰';
+    }
+
+    body.menu-open .menu-icon::before {
+      content: '×';
+    }
+
+    .nav-overlay {
+      display: none;
     }
 
     .nav-links a {
@@ -94,23 +114,6 @@
       padding-bottom: 7px;
     }
 
-    .mobile-menu-button {
-      display: none;
-      background: transparent;
-      border: 0;
-      color: var(--text);
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    .menu-icon::before {
-      content: '☰';
-    }
-
-    body.menu-open .menu-icon::before {
-      content: '×';
-    }
-
     .hero {
       min-height: 72vh;
       display: flex;
@@ -118,11 +121,11 @@
       padding: 150px 7vw 90px;
       position: relative;
       background:
-        linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.72) 42%, rgba(0, 0, 0, 0.36) 100%),
-        linear-gradient(to top, #050505 0%, rgba(5, 5, 5, 0.25) 45%, rgba(5, 5, 5, 0.05) 100%),
+        linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.36) 100%),
+        linear-gradient(to top, #050505 0%, rgba(5,5,5,0.25) 45%, rgba(5,5,5,0.05) 100%),
         url('images/merch-hero.png') center/cover no-repeat;
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       overflow: hidden;
     }
 
@@ -202,7 +205,7 @@
     .filter-button {
       min-width: 120px;
       border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.025);
+      background: rgba(255,255,255,0.025);
       color: var(--text);
       padding: 12px 22px;
       font-size: 0.66rem;
@@ -214,8 +217,8 @@
 
     .filter-button.active,
     .filter-button:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.34);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.34);
     }
 
     .product-grid {
@@ -225,22 +228,22 @@
     }
 
     .product-card {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
       overflow: hidden;
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
     .product-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255,255,255,0.2);
     }
 
     .product-image {
       height: 330px;
       background: #101010;
       overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .product-image img {
@@ -326,53 +329,70 @@
     @media (max-width: 650px) {
 
       .nav {
-        padding: 24px 6vw;
-        height: 88px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 45px 6vw;
+        background: rgba(0,0,0,0.72);
+        backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
         justify-content: center;
+        z-index: 120;
+      }
+
+      .mobile-menu-button {
+        display: block;
+        background: transparent;
+        border: 0;
+        color: var(--text);
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+        position: absolute;
+        left: 6vw;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
       }
 
       .logo {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 1.9rem;
-      }
-
-      .mobile-menu-button {
-        display: block;
-        position: absolute;
-        left: 6vw;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 200;
+        font-size: 2rem;
       }
 
       .nav-links {
         position: fixed;
+        top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        top: auto;
-
-        width: 100%;
-        height: 36vh;
+        width: 58%;
+        max-width: 330px;
+        height: 100vh;
 
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: flex-start;
 
-        gap: 22px;
-        padding: 34px 24px;
+        gap: 26px;
+        padding: 100px 38px 40px;
 
-        background: rgba(0, 0, 0, 0.94);
+        background: rgba(0,0,0,0.92);
         backdrop-filter: blur(18px);
 
-        border-top: 1px solid rgba(255,255,255,0.12);
+        border-right: 1px solid rgba(255,255,255,0.12);
+
+        font-size: 0.72rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        text-align: left;
 
         opacity: 0;
         visibility: hidden;
-        transform: translateY(100%);
+        transform: translateX(-100%);
 
         transition:
           transform 0.35s ease,
@@ -382,43 +402,38 @@
       }
 
       body.menu-open .nav-links {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
         visibility: visible;
       }
 
-      .nav-links a {
-        font-size: 0.72rem;
-        letter-spacing: 0.28em;
+      .nav-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: transparent;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      body.menu-open .nav-overlay {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
       .hero {
-        min-height: 62vh;
-        padding: 138px 6vw 58px;
-      }
-
-      .hero h1 {
-        font-size: clamp(3rem, 18vw, 5rem);
-      }
-
-      .hero p {
-        font-size: 0.92rem;
+        min-height: 70vh;
+        padding-top: 160px;
+        padding-bottom: 60px;
+        background-position: center;
       }
 
       .shop-section {
-        padding: 54px 6vw 44px;
-      }
-
-      .filters {
-        gap: 10px;
-        margin-bottom: 28px;
-      }
-
-      .filter-button {
-        min-width: auto;
-        padding: 11px 16px;
-        font-size: 0.6rem;
-        letter-spacing: 0.22em;
+        padding-left: 6vw;
+        padding-right: 6vw;
       }
 
       .product-grid {
@@ -430,24 +445,24 @@
         height: 260px;
       }
 
+      .filters {
+        gap: 10px;
+      }
+
+      .filter-button {
+        min-width: auto;
+        padding: 11px 16px;
+        font-size: 0.6rem;
+        letter-spacing: 0.22em;
+      }
+
       .footer {
         flex-direction: column;
         align-items: flex-start;
-        text-align: left;
-        padding: 54px 6vw 42px;
-        gap: 24px;
-      }
-
-      .footer-brand {
-        font-size: 2rem;
       }
 
       .footer-links {
-        flex-direction: row;
         flex-wrap: wrap;
-        gap: 28px;
-        font-size: 0.68rem;
-        letter-spacing: 0.28em;
       }
     }
   </style>
@@ -472,6 +487,8 @@
     </nav>
 
   </header>
+
+  <div class="nav-overlay" onclick="closeMenu()"></div>
 
   <main>
 
@@ -582,6 +599,14 @@
       document.body.classList.toggle('menu-open');
     }
 
+    function closeMenu() {
+      document.body.classList.remove('menu-open');
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
     const filterButtons = document.querySelectorAll('.filter-button');
     const productCards = document.querySelectorAll('.product-card');
 
@@ -613,5 +638,4 @@
   </script>
 
 </body>
-
 </html>
